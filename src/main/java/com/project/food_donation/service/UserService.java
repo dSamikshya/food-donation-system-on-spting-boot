@@ -15,8 +15,8 @@ public class UserService {
 	@Autowired
 	 UserRepo userRepo;
 	public User addUser(User user) {
-		User SavedUser =userRepo.save(user);
-		return SavedUser;
+		User savedUser =userRepo.save(user);
+		return savedUser;
 	}
 	
 	
@@ -27,8 +27,31 @@ public class UserService {
 
 
 		public User getById(int id) {
-			User user=userRepo.getById(id);
+			System.out.println("tdets "+ id);
+			User user=userRepo.findById(id).get();
 			return user;
 		}
+
+
+		public User updateUserById(User user, int id) {
+			user.setId(id);
+			User updateUser= userRepo.save(user);
+			
+			return updateUser;
+		}
+
+
+		public List<User> getByName(String name) {
+			List<User> user=userRepo.findByname(name);
+			return user;
+		}
+
+
+		public void deleteUser(int id) {
+			userRepo.deleteById(id);
+			
+		}
+
+
 
 }

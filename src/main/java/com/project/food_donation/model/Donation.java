@@ -1,14 +1,24 @@
 package com.project.food_donation.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Donation extends BaseEntity {
+	
+@OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+	private Foodtype foodtype;
 
-	private String food_type;
+	private String name;
 	private int quantity;
 	private int manufacture_date;
 	private int expiry_date;
@@ -16,13 +26,27 @@ public class Donation extends BaseEntity {
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	private User user;
+	
+	 @OneToMany(mappedBy = "donation", cascade = CascadeType.ALL)
+	 @JsonIgnore
+	 private List<Claim> claims;
 
-	public String getFood_type() {
-		return food_type;
+	
+
+	public Foodtype getFoodtype() {
+		return foodtype;
 	}
 
-	public void setFood_type(String food_type) {
-		this.food_type = food_type;
+	public void setFoodtype(Foodtype foodtype) {
+		this.foodtype = foodtype;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public int getQuantity() {
@@ -63,6 +87,14 @@ public class Donation extends BaseEntity {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public List<Claim> getClaims() {
+		return claims;
+	}
+
+	public void setClaims(List<Claim> claims) {
+		this.claims = claims;
 	}
 
 }

@@ -17,15 +17,29 @@ public class DonationService {
 		return addDonation;
 		}
 	public List<Donation> getAllDonations() {
-		List<Donation> allDonations=donationRepo.findAll();
-		return allDonations;
+		List<Donation> Donations=donationRepo.findAll();
+		return Donations;
 	}
 	public Donation getDonationById( int id) {
-		Donation donationById=donationRepo.findById(id).get();
-		return donationById;
+		Donation donation=donationRepo.findById(id).get();
+		return donation;
+		
+	}
+	public  List<Donation> findByName( String name) {
+		List<Donation> donations =donationRepo.findByName(name);
+		return donations;
 		
 	}
 	
+	public void deleteDonation(int id) {
+		donationRepo.deleteById(id);
+		
+	}
+	public Donation updateDonation( Donation donation, int id) {
+		donation.setId(id);
+		Donation updateDonation=donationRepo.save(donation);
+		return updateDonation;
+	}
 	
 	}
 

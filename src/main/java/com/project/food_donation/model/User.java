@@ -2,12 +2,12 @@ package com.project.food_donation.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
 
 import java.util.List;
 
@@ -23,6 +23,14 @@ public class User extends BaseEntity {
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	@JsonIgnore
 	private List<Donation> donations;
+	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	@JsonIgnore
+	private List<Appeal> appeals;
+	
+	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+	@JsonIgnore
+	private List<Claim> claims;
 
 	public String getPassword() {
 		return password;
@@ -80,6 +88,24 @@ public class User extends BaseEntity {
 
 	public void setDonations(List<Donation> donations) {
 		this.donations = donations;
+	}
+
+	
+
+	public List<Appeal> getAppeals() {
+		return appeals;
+	}
+
+	public void setAppeals(List<Appeal> appeals) {
+		this.appeals = appeals;
+	}
+
+	public List<Claim> getClaims() {
+		return claims;
+	}
+
+	public void setClaims(List<Claim> claims) {
+		this.claims = claims;
 	}
 
 }

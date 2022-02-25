@@ -1,5 +1,9 @@
 package com.project.food_donation.repo;
 
-public interface ClaimRepo {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.project.food_donation.model.Claim;
+
+public interface ClaimRepo  extends JpaRepository<Claim, Integer>{
 
 }
