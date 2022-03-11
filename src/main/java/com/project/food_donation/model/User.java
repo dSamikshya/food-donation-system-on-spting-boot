@@ -31,6 +31,10 @@ public class User extends BaseEntity {
 	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
 	@JsonIgnore
 	private List<Claim> claims;
+	
+	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+	@JsonIgnore
+	private List<Donate> donates;
 
 	public String getPassword() {
 		return password;

@@ -1,5 +1,9 @@
 package com.project.food_donation.repo;
 
-public interface GrantRepo {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.project.food_donation.model.Donate;
+
+public interface GrantRepo extends JpaRepository<Donate, Integer>{
 
 }
